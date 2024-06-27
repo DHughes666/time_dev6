@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=./index.html">
+  <script>
+    var pathname = window.location.pathname;
+    var search = window.location.search;
+    var hash = window.location.hash;
+    var newPath = pathname.replace(/^\//, '') + search + hash;
+    window.location.replace('./index.html?' + newPath);
+  </script>
+</head>
+<body>
+</body>
+</html>

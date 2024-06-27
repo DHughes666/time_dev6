@@ -34,11 +34,23 @@ jobs:
           echo "REACT_APP_FIREBASE_APP_ID=${{ secrets.REACT_APP_FIREBASE_APP_ID }}" >> $GITHUB_ENV
           echo "REACT_APP_FIREBASE_MEASUREMENT_ID=${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}" >> $GITHUB_ENV
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "dhughes666"
+          git config --global user.email "dhughes666@github.com"
+
       - name: Build project
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        run: npm run deploy
+        run: |
+          git checkout --orphan gh-pages
+          git rm --cached -r .
+          cp -r build/. .
+          git add -A
+          git commit -m "Deploy to GitHub Pages"
+          git branch -M gh-pages
+          git push -f origin gh-pages
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2

@@ -20,6 +20,8 @@ const App = () => {
       <Routes>
         <Route basename={process.env.PUBLIC_URL}/>
         <Route exact element={<Header />}>
+          <Route path="/time_dev6" element={<Home />} />
+          <Route path="" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path='/timetable' element={<Timetable />} />
           <Route path="/login" element={<Login />} />

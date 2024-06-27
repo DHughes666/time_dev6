@@ -18,6 +18,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route basename={process.env.PUBLIC_URL}/>
         <Route exact element={<Header />}>
           <Route path="/" element={<Home />} />
           <Route path='/timetable' element={<Timetable />} />

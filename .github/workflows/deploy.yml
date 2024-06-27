@@ -43,6 +43,8 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
+        env:
+          GH_TOKEN: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
         run: |
           git checkout --orphan gh-pages
           git rm --cached -r .
@@ -50,7 +52,7 @@ jobs:
           git add -A
           git commit -m "Deploy to GitHub Pages"
           git branch -M gh-pages
-          git push -f origin gh-pages
+          git push -f https://$GH_TOKEN@github.com/${{ github.repository }}.git gh-pages
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
